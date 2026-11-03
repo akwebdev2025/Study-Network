@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10264b">
+  <meta name="description" content="Share an idea or suggestion for Study Network.">
+  <title>Feedback & Suggestions | Study Network</title>
+  <link rel="icon" href="../assets/logo/study-network-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header class="site-header"><div class="container nav-wrap">
+  <a class="brand" href="../index.html"><span class="brand-mark"><svg viewBox="0 0 48 48"><path d="M5 17.5 24 8l19 9.5L24 27 5 17.5Z"/><path d="M12 22v10.2c6.8 5.7 17.2 5.7 24 0V22"/><path d="M43 18v13"/></svg></span><span class="brand-copy"><strong>STUDY NETWORK</strong><small>YOUR ACADEMIC COMPANION</small></span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primaryNav"><span></span><span></span><span></span></button>
+  <nav class="primary-nav" id="primaryNav"><a class="nav-link" href="../index.html#home">Home</a><a class="nav-link" href="../index.html#tools">Student tools</a><a class="nav-link" href="../index.html#upcoming">What's next</a><a class="nav-link" href="about.html">About us</a><a class="nav-cta" href="../index.html#tools">Explore tools ↗</a></nav>
+</div></header>
+<main>
+  <section class="page-hero"><div class="container"><span class="section-kicker light-kicker">HELP US IMPROVE</span><h1>Your idea could be<br><span style="color:#8db4ff">the next useful tool.</span></h1><p>Tell us what would make your academic life easier. Suggestions help us decide what to build next.</p></div></section>
+  <section class="content-page"><div class="container"><div class="content-panel">
+    <h2>Share your suggestion</h2>
+    <p>Submit your idea through your email app. The form will prepare a message for you to review and send.</p>
+    <form class="feedback-form" id="feedbackForm">
+      <div class="form-field"><label for="name">Your name (optional)</label><input id="name" name="name" maxlength="80" placeholder="How should we address you?"></div>
+      <div class="form-field"><label for="category">Suggestion category</label><select id="category" name="category"><option>New student tool</option><option>Improvement to an existing tool</option><option>Study resources</option><option>Bug or issue</option><option>Other feedback</option></select></div>
+      <div class="form-field"><label for="message">Your idea or feedback</label><textarea id="message" name="message" required maxlength="2000" placeholder="Tell us what would be useful..."></textarea></div>
+      <button class="button button-primary" type="submit">Prepare email <span>→</span></button>
+      <span class="form-note">Your email app will open with your suggestion. Nothing is submitted automatically.</span>
+      <p class="form-success" id="formStatus" role="status" hidden></p>
+    </form>
+  </div></div></section>
+</main>
+<footer class="site-footer"><div class="container footer-bottom"><span>© <span id="currentYear"></span> Study Network. All rights reserved.</span><a href="../index.html">Back to homepage ↑</a></div></footer>
+<script src="../js/main.js"></script>
+<script>
+  document.getElementById("feedbackForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const category = document.getElementById("category").value;
+    const message = document.getElementById("message").value.trim();
+    if (!message) return;
+    const subject = encodeURIComponent("Study Network feedback: " + category);
+    const body = encodeURIComponent("Name: " + (name || "Not provided") + "\\nCategory: " + category + "\\n\\nSuggestion:\\n" + message);
+    document.getElementById("formStatus").hidden = false;
+    document.getElementById("formStatus").textContent = "Opening your email app so you can review and send your suggestion.";
+    window.location.href = "mailto:studynetwork.anetwork4u@gmail.com?subject=" + subject + "&body=" + body;
+  });
+</script>
+</body></html>
